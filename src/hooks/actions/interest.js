@@ -1,6 +1,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import {
+    resetAllData,
     setBalance,
     setInterest,
     setPayment,
@@ -29,4 +30,10 @@ export const useSetModifier = (value) => {
     const dispatch = useDispatch();
 
     return useCallback((value) => dispatch(setModifier(value)), [dispatch]);
+};
+
+export const useResetAllData = () => {
+    const dispatch = useDispatch();
+
+    return useCallback(() => dispatch(resetAllData()), [dispatch]);
 };

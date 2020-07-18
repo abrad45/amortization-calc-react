@@ -8,6 +8,7 @@ const initialState = {
 // Actions
 const KEY_SET = 'amortization-calc/KEY_SET';
 const KEY_CLEAR = 'amortization-calc/KEY_CLEAR';
+const ALL_CLEAR = 'amortization-calc/ALL_CLEAR';
 
 // Action Creators
 export const setBalance = (balance) => ({
@@ -41,6 +42,10 @@ export const setModifier = (modifier) => ({
 });
 export const clearModifier = () => ({ type: KEY_CLEAR, keyName: 'modifier' });
 
+export const resetAllData = () => ({
+    type: ALL_CLEAR,
+});
+
 // Reducer Functions
 const setKey = (state, keyName, keyValue) =>
     Object.assign({}, state, { [keyName]: +keyValue });
@@ -53,6 +58,8 @@ export default (state = initialState, action = {}) => {
             return setKey(state, action.keyName, action.keyValue);
         case KEY_CLEAR:
             return clearKey(state, action.keyName);
+        case ALL_CLEAR:
+            return Object.assign({}, initialState);
         default:
             return state;
     }

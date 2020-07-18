@@ -19,9 +19,6 @@ const App = () => (
     <Provider store={store}>
         <Router>
             <div className="container">
-                <h1 className="is-size-1">
-                    Student Loan Amortization Calculator
-                </h1>
                 <div className="columns">
                     <div className="column is-three-quarters">
                         <Switch>
