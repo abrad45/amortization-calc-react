@@ -25,6 +25,8 @@ Make sure you have these (or similar) before continuing. Versions provided below
 * `npm` v6.14.5
 * `yarn` v0.24.5
 
+_Note_: This project utilizes eslint. If you're using Visual Studio Code, the setting `eslint.packageManager` may need to be set to `yarn` in order for linting to work.
+
 1. `yarn install`
 2. `npm run start`
 3. Open `localhost:1234`
