@@ -4,6 +4,8 @@ import ReactDOM from 'react-dom';
 // Utilities
 import bulma from 'bulma';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from '/reducers';
 
 // Components
 import { Footer } from '/components/footer';
@@ -13,8 +15,8 @@ import { Sidebar } from '/components/sidebar';
 import { InterestCalc } from '/routes/interest';
 import { WeightedInterest } from '/routes/weight';
 
-const App = () => {
-    return (
+const App = () => (
+    <Provider store={store}>
         <Router>
             <div className="container">
                 <h1 className="is-size-1">
@@ -38,7 +40,7 @@ const App = () => {
                 </div>
             </div>
         </Router>
-    );
-};
+    </Provider>
+);
 
 ReactDOM.render(<App />, document.getElementById('app'));
