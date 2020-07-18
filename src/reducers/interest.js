@@ -19,10 +19,13 @@ export const clearBalance = () => ({ type: KEY_CLEAR, keyName: 'balance' });
 
 export const setInterest = (interest) => ({
     type: KEY_SET,
-    keyName: 'interest',
+    keyName: 'interestRate',
     keyValue: interest,
 });
-export const clearInterest = () => ({ type: KEY_CLEAR, keyName: 'interest' });
+export const clearInterest = () => ({
+    type: KEY_CLEAR,
+    keyName: 'interestRate',
+});
 
 export const setPayment = (payment) => ({
     type: KEY_SET,
