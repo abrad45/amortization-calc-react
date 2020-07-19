@@ -43,13 +43,14 @@ export const InterestFields = () => {
                 helpText="What can you comfortably pay now?"
                 onChange={setPayment}
             />
+            {/*
             <Field
                 label="Payoff Modifier"
                 value={modifier}
                 suffix="%"
                 helpText="See the results of paying this much more or less"
                 onChange={setModifier}
-            />
+            />*/}
         </div>
     );
 };

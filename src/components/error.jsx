@@ -1,6 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const AmountError = () => (
+// @TODO in the future, we can show different error messages depending
+// on `value` prop. For now, we only have one error.
+
+export const DataError = ({ value }) => (
     <div className="notification is-danger is-light mt-5">
         <button className="delete" onClick={resetPaymentData} />
         <p className="is-size-4">So, some bad news.</p>
@@ -16,3 +20,7 @@ export const AmountError = () => (
         </p>
     </div>
 );
+
+Error.propTypes = {
+    value: PropTypes.string.isRequired,
+};

@@ -1,4 +1,4 @@
 import { useGetInterest } from './use-get-interest';
-import { useMakeTable } from './use-make-table';
+import { useGetPaymentData } from './use-get-payment-data';
 
-export { useGetInterest, useMakeTable };
+export { useGetInterest, useGetPaymentData };

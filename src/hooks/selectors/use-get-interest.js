@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
+import { shallowEqual, useSelector } from 'react-redux';
 
 const getInterest = (state) => state.interest;
 
-export const useGetInterest = () => useSelector(getInterest);
+export const useGetInterest = () => useSelector(getInterest, shallowEqual);

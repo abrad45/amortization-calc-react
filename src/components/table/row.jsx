@@ -1,13 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// Components
-
-// Shapes
-
-// Hooks
-
 // Utilities
+import { IndividualPayment } from '/utilities/shapes/payment';
 
 export const TableRow = ({
     monthNumber,
@@ -42,11 +37,4 @@ export const TableRow = ({
     );
 };
 
-TableRow.propTypes = {
-    monthNumber: PropTypes.number.isRequired,
-    paymentCount: PropTypes.number.isRequired,
-    remainingBalance: PropTypes.number.isRequired,
-    dateString: PropTypes.string.isRequired,
-    interestPaid: PropTypes.number.isRequired,
-    interestPaidToDate: PropTypes.number.isRequired,
-};
+TableRow.propTypes = IndividualPayment.isRequired;

@@ -9,20 +9,23 @@ import { Results } from './results';
 // Utilities
 import { useGetPaymentData } from '/hooks/selectors';
 
-export const InterestCalc = () => {
-    const [activeTab, setActiveTab] = useState('table');
+export const ResultTabs = ({ activeTab, setActiveTab }) => {
     const isTableActive = activeTab === 'table';
     const isGraphActive = activeTab === 'graph';
 
     const onTableClick = () => setActiveTab('table');
     const onGraphClick = () => setActiveTab('graph');
 
-    const paymentData = useGetPaymentData();
-
     return (
-        <div className="interest-calculation">
-            <InterestFields />
-            <Results />
+        <div className="tabs is-medium">
+            <ul>
+                <li className={`${isTableActive && 'is-active'}`}>
+                    <a onClick={onTableClick}>Table</a>
+                </li>
+                <li className={`${isGraphActive && 'is-active'}`}>
+                    <a onClick={onGraphClick}>Graph</a>
+                </li>
+            </ul>
         </div>
     );
 };

@@ -2,24 +2,21 @@ import React from 'react';
 
 // Components
 import { TableRow } from './row';
-import { AmountError } from './error';
+import { AmountError } from '../error';
 
 // Hooks
-import { useMakeTable } from '/hooks/selectors';
+import { useGetPaymentData } from '/hooks/selectors';
 import { useResetAllData } from '/hooks/actions';
 
-export const PaymentsTable = () => {
-    const paymentsData = useMakeTable();
-    const resetPaymentData = useResetAllData();
+// Utilities
+import { PaymentDataShape } from '/utilities/shapes/payment';
 
-    // @TODO uggo
-    if (paymentsData.error === 'insufficient_payment') {
-        return <AmountError />;
-    }
+export const PaymentsTable = ({ data = [] }) => {
+    const resetPaymentData = useResetAllData();
 
     return (
         <div className="payment-table">
-            <h3>You'll be paid off in {paymentsData.length} months!</h3>
+            <h3>You'll be paid off in {data.length} months!</h3>
             <table className="table is-striped is-hoverable is-fullwidth">
                 <thead>
                     <tr>
@@ -31,7 +28,7 @@ export const PaymentsTable = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {paymentsData.map((payment) => (
+                    {data.map((payment) => (
                         <TableRow
                             key={`payment_count_${payment.paymentCount}`}
                             {...payment}
@@ -43,4 +40,6 @@ export const PaymentsTable = () => {
     );
 };
 
-PaymentsTable.propTypes = {};
+PaymentsTable.propTypes = {
+    data: PaymentDataShape,
+};

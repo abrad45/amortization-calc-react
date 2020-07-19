@@ -1,4 +1,4 @@
-import { useGetInterest } from './';
+import { useGetInterest } from '.';
 
 import {
     getDaysInMonth,
@@ -10,7 +10,7 @@ import {
 // https://stackoverflow.com/a/11832950
 const roundCurrency = (val) => Math.round((val + Number.EPSILON) * 100) / 100;
 
-export const useMakeTable = () => {
+export const useGetPaymentData = () => {
     const interestData = useGetInterest();
     const { balance, interestRate, payment, modifier } = Object.assign(
         {},
@@ -81,6 +81,5 @@ export const useMakeTable = () => {
         }
     }
 
-    console.log('Just before return', returnData);
     return returnData;
 };
