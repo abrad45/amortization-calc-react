@@ -2,11 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classnames from 'classnames';
 
-const Affix = ({ text }) => (
-    <p className="control">
-        <a className="button is-static">{text}</a>
-    </p>
-);
+import { Affix } from './affix';
+import { HelpText } from './help-text';
+
+/*
+<div class="field">
+  <label class="label">Label</label>
+  <div class="control">
+    <input class="input" type="text" placeholder="Text input">
+  </div>
+  <p class="help">This is a help text</p>
+</div>
+*/
 
 export const Field = ({
     placeholder,
@@ -19,22 +26,30 @@ export const Field = ({
     suffix,
     helpText,
     type = 'number',
+    isHorizontal,
 }) => {
     const hasAffix = prefix || suffix;
-    const isExpandedClasses = classnames('field is-narrow', {
-        'is-expanded': hasAffix,
-    });
+    const hasAddons = hasAffix || helpText;
+    const isExpandedClasses = classnames('field is-narrow');
     const hasAddonsClasses = classnames('field', {
-        'has-addons': hasAffix || helpText,
+        'has-addons': hasAddons,
+    });
+
+    const containerClasses = classnames('field', {
+        'is-horizontal': isHorizontal,
+    });
+
+    const labelClasses = classnames('label is-normal', {
+        'field-label': isHorizontal,
     });
 
     return (
-        <div className="field is-horizontal">
-            <label className="field-label">{label}</label>
+        <div className={containerClasses}>
+            <label className={labelClasses}>{label}</label>
             <div className="field-body">
                 <div className={isExpandedClasses}>
                     <div className={hasAddonsClasses}>
-                        {!!prefix && <Affix text={prefix} />}
+                        <Affix text={prefix} />
                         <p className="control is-expanded">
                             <input
                                 className="input"
@@ -44,9 +59,9 @@ export const Field = ({
                                 value={value}
                             />
                         </p>
-                        {!!suffix && <Affix text={suffix} />}
+                        <Affix text={suffix} />
                     </div>
-                    {helpText && <p className="help">{helpText}</p>}
+                    <HelpText>{helpText}</HelpText>
                 </div>
             </div>
         </div>
@@ -61,4 +76,5 @@ Field.propTypes = {
     prefix: PropTypes.string,
     suffix: PropTypes.string,
     helpText: PropTypes.string,
+    isHorizontal: PropTypes.bool,
 };

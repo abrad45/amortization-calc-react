@@ -58,7 +58,6 @@ export const useGetPaymentData = () => {
         // trigger this issue. Either way, this is a side project and I don't
         // think it's a case worth accounting for 😬
         if (monthlyInterest > payment) {
-            console.log('ugh');
             return {
                 error: 'insufficient_payment',
             };

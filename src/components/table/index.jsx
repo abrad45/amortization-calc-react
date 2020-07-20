@@ -4,19 +4,17 @@ import React from 'react';
 import { TableRow } from './row';
 import { AmountError } from '../error';
 
-// Hooks
-import { useGetPaymentData } from '/hooks/selectors';
-import { useResetAllData } from '/hooks/actions';
-
 // Utilities
+import { useGetPaymentData } from '/hooks/selectors';
 import { PaymentDataShape } from '/utilities/shapes/payment';
 
 export const PaymentsTable = ({ data = [] }) => {
-    const resetPaymentData = useResetAllData();
-
     return (
         <div className="payment-table">
-            <h3>You'll be paid off in {data.length} months!</h3>
+            <h3>
+                You'll be paid off in {data.length} months (just over{' '}
+                {Math.floor(data.length / 12)} years)!
+            </h3>
             <table className="table is-striped is-hoverable is-fullwidth">
                 <thead>
                     <tr>

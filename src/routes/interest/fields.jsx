@@ -1,7 +1,7 @@
 import React from 'react';
 
 // Components
-import { Field } from '/components/field';
+import { Field } from '/components/field/index';
 
 // Utilities
 import { useGetInterest } from '/hooks/selectors';
