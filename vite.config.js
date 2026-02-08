@@ -31,4 +31,28 @@ module.exports = defineConfig({
             },
         ],
     },
+    test: {
+        globals: true,
+        environment: 'jsdom',
+        setupFiles: './src/test/setup.js',
+        coverage: {
+            provider: 'v8',
+            reporter: ['text', 'json', 'html'],
+            include: ['src/**/*.{js,jsx}'],
+            exclude: [
+                'src/test/**',
+                '**/*.test.{js,jsx}',
+                '**/*.spec.{js,jsx}',
+                'src/index.js',
+                'src/index.jsx',
+                '**/index.js', // Exclude index.js files that are just re-exports
+            ],
+            thresholds: {
+                lines: 90,
+                functions: 90,
+                branches: 90,
+                statements: 90,
+            },
+        },
+    },
 });
