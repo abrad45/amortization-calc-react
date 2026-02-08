@@ -20,6 +20,7 @@ export const useGetPaymentData = () => {
 
   let remainingBalance = balance;
   let totalInterestPaid = 0;
+  let previousBalance = balance;
 
   let year = new Date().getFullYear() - 2000;
   let month = new Date().getMonth();
@@ -65,6 +66,15 @@ export const useGetPaymentData = () => {
       // 3. Make a payment
       remainingBalance -= payment;
       totalInterestPaid += monthlyInterest;
+      
+      // 4. Check if the balance is increasing after the first month.
+      // If month 2 balance (after payment) is higher than month 1 balance (after payment),
+      // the debt will only increase. This catches edge cases where payment equals interest.
+      if (paymentCount === 2 && remainingBalance > previousBalance) {
+        return {
+          error: 'insufficient_payment',
+        };
+      }
 
       returnData = returnData.concat({
         monthNumber: 1 + month,
@@ -74,6 +84,11 @@ export const useGetPaymentData = () => {
         interestPaid: roundCurrency(monthlyInterest),
         interestPaidToDate: roundCurrency(totalInterestPaid),
       });
+
+      // Store the balance after the first month for comparison
+      if (paymentCount === 1) {
+        previousBalance = remainingBalance;
+      }
 
       // Set up the next loop
       thePassageOfTime();
