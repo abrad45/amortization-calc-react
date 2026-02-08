@@ -34,7 +34,7 @@ export const useGetPaymentData = () => {
     };
 
     for (let paymentCount = 1; remainingBalance > 0; paymentCount++) {
-        const monthlyInterest = 0;
+        let monthlyInterest = 0;
         const daysInMonth = getDaysInMonth(year, month);
         const dailyInterestRate = getDailyInterestRate(interestRate, year);
 
