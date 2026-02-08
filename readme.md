@@ -31,13 +31,10 @@ This page is meant to show off my coding ability and, to an extent, philosophies
 
 ## Installation
 
-### TODO UPDATE THIS
+Make sure you have these (or similar) before continuing:
 
-Make sure you have these (or similar) before continuing. Versions provided below were used during development
-
-* `nodejs` v12.18.2
-* `npm` v6.14.5
-* `yarn` v0.24.5
+* `nodejs` (see `.nvmrc` for version)
+* `yarn` v1.22+
 
 _Note_: This project utilizes eslint. If you're using Visual Studio Code, the setting `eslint.packageManager` may need to be set to `yarn` in order for linting to work.
 
@@ -45,3 +42,39 @@ _Note_: This project utilizes eslint. If you're using Visual Studio Code, the se
 2. `yarn install`
 3. `yarn start`
 4. Open `localhost:1234`
+
+## Testing
+
+This project uses [Vitest](https://vitest.dev/) for unit testing with comprehensive test coverage.
+
+### Running Tests
+
+```bash
+# Run tests in watch mode
+yarn test
+
+# Run tests once
+yarn test run
+
+# Run tests with coverage report
+yarn test:coverage
+```
+
+### Coverage Requirements
+
+The project enforces 90% code coverage thresholds for:
+- Statements
+- Branches
+- Functions
+- Lines
+
+Coverage reports are generated in the `coverage/` directory and can be viewed by opening `coverage/index.html` in your browser.
+
+### CI/CD
+
+The CI pipeline runs automatically on pull requests and will fail if:
+- Any tests fail
+- Code coverage drops below 90% for any metric
+- The build fails
+
+All checks must pass before code can be merged to the main branch.
