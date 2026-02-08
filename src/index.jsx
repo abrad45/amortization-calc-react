@@ -1,8 +1,7 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 
 // Utilities
-import bulma from 'bulma';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '/reducers';
@@ -40,4 +39,8 @@ const App = () => (
     </Provider>
 );
 
-ReactDOM.render(<App />, document.getElementById('app'));
+createRoot(document.getElementById('app')).render(
+    <StrictMode>
+        <App />
+    </StrictMode>
+);

@@ -1,5 +1,3 @@
-import React from 'react';
-
 // Components
 import { Line } from 'react-chartjs-2';
 

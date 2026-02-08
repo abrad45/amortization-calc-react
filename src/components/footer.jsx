@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const Footer = () => (
     <footer className="footer column mt-4">
         <div className="content has-text-centered">

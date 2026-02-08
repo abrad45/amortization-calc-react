@@ -14,9 +14,8 @@ See <https://github.com/abrad45/amortization-calc>
 
 This page is meant to show off my coding ability and, to an extent, philosophies, but also to... be a quick side project. I ported over the code from the above repo in a weekend, rewriting all the UI, learning [Bulma](https://bulma.io) and trying to get things up and running quickly without totally reinventing the wheel. Some behind the scenes notes:
 
-* Parcel is just so much easier than everything else. I really hate Webpack and "Div Ops"
-* Subsequently, I didn't need to go the CRA route and add all that cruft. This is so lean I don't even have lodash or moment.
-* I looked into D3.js and while I think I could use it here, it seems like a lot of overkill. This worked pretty well.
+* Vite was adopted in 2026 to avoid "div-ops" as much as possible. I used parcel before; vite is even simpler.
+* I looked into D3.js and while I think I could use it here, it seems like a lot of overkill. Chart.js worked pretty well.
 * I'm not thrilled with the data-managing code for the weighted-interst calc. It does what it needs to do, but yikes.
 * Speaking of some yikes code, the loop for calculating interest is largely lifted from my 2015 code. I'm sure I could scrap it all and rewrite it now in a better way, but again, this works for a side project
 
@@ -32,6 +31,8 @@ This page is meant to show off my coding ability and, to an extent, philosophies
 
 ## Installation
 
+### TODO UPDATE THIS
+
 Make sure you have these (or similar) before continuing. Versions provided below were used during development
 
 * `nodejs` v12.18.2
@@ -40,6 +41,7 @@ Make sure you have these (or similar) before continuing. Versions provided below
 
 _Note_: This project utilizes eslint. If you're using Visual Studio Code, the setting `eslint.packageManager` may need to be set to `yarn` in order for linting to work.
 
-1. `yarn install`
-2. `npm run start`
-3. Open `localhost:1234`
+1. `nvm use`
+2. `yarn install`
+3. `yarn start`
+4. Open `localhost:1234`

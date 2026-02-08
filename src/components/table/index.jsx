@@ -1,11 +1,7 @@
-import React from 'react';
-
 // Components
 import { TableRow } from './row';
-import { AmountError } from '../error';
 
 // Utilities
-import { useGetPaymentData } from '/hooks/selectors';
 import { PaymentDataShape } from '/utilities/shapes/payment';
 
 export const PaymentsTable = ({ data = [] }) => {
