@@ -15,32 +15,32 @@ import { InterestCalc } from '/routes/interest';
 import { WeightedInterest } from '/routes/weight';
 
 const App = () => (
-    <Provider store={store}>
-        <Router>
-            <div className="container">
-                <div className="columns">
-                    <div className="column is-three-quarters">
-                        <Switch>
-                            <Route path="/" exact>
-                                <InterestCalc />
-                            </Route>
-                            <Route path="/weighted-interest">
-                                <WeightedInterest />
-                            </Route>
-                        </Switch>
-                    </div>
-                    <Sidebar />
-                </div>
-                <div className="columns">
-                    <Footer />
-                </div>
-            </div>
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router>
+      <div className="container">
+        <div className="columns">
+          <div className="column is-three-quarters">
+            <Switch>
+              <Route path="/" exact>
+                <InterestCalc />
+              </Route>
+              <Route path="/weighted-interest">
+                <WeightedInterest />
+              </Route>
+            </Switch>
+          </div>
+          <Sidebar />
+        </div>
+        <div className="columns">
+          <Footer />
+        </div>
+      </div>
+    </Router>
+  </Provider>
 );
 
 createRoot(document.getElementById('app')).render(
-    <StrictMode>
-        <App />
-    </StrictMode>
+  <StrictMode>
+    <App />
+  </StrictMode>
 );

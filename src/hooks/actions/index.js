@@ -1,7 +1,7 @@
 export {
-    useResetAllData,
-    useSetBalance,
-    useSetInterest,
-    useSetPayment,
-    useSetModifier,
+  useResetAllData,
+  useSetBalance,
+  useSetInterest,
+  useSetPayment,
+  useSetModifier,
 } from './interest';
