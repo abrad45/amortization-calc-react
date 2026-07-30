@@ -6,7 +6,7 @@ describe('TableRow', () => {
   const mockPaymentData = {
     monthNumber: 1,
     paymentCount: 1,
-    remainingBalance: 9875.50,
+    remainingBalance: 9875.5,
     dateString: '01/2024',
     interestPaid: 51.37,
     interestPaidToDate: 51.37,

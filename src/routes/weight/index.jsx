@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import { WeightedInterestRow } from './row';
 
@@ -6,35 +6,42 @@ export const WeightedInterest = () => {
   const [rowCount, setRowCount] = useState(3);
   const [data, updateData] = useState([]);
 
+  // Grow (or shrink) to rowCount while keeping whatever the user already
+  // typed — rebuilding from scratch here wiped every row on "Add Loan".
   useEffect(() => {
-    let defaultState = [];
+    updateData((previousData) => {
+      const nextData = previousData.slice(0, rowCount);
 
-    for (let i = 0; i < rowCount; i++) {
-      defaultState.push({ amount: 0, interest: 0 });
-    }
+      while (nextData.length < rowCount) {
+        nextData.push({ amount: 0, interest: 0 });
+      }
 
-    updateData(defaultState);
+      return nextData;
+    });
   }, [rowCount]);
 
-  const update = (key, index, value) => {
-    const newData = [...data];
-    newData[index][key] = +value;
-
-    updateData(newData);
-  };
+  // Replace the row rather than mutating it: [...data] is a shallow copy, so
+  // assigning into newData[index] also edited the previous state's object.
+  const update = (key, index, value) =>
+    updateData((previousData) =>
+      previousData.map((row, i) =>
+        i === index ? { ...row, [key]: +value } : row
+      )
+    );
 
   // Formula from http://loanconsolidation.ed.gov/help/rate.html
   let weightFactor = 0;
   let totalAmount = 0;
 
-  for (let loan in data) {
-    const { amount, interest } = data[loan];
-
+  for (const { amount, interest } of data) {
     totalAmount += amount;
     weightFactor += amount * interest;
   }
 
-  const weightedInterest = (weightFactor / totalAmount).toFixed(3);
+  // Guard the 0/0 case: every row starts at zero, and NaN.toFixed(3) is "NaN".
+  const weightedInterest = totalAmount
+    ? (weightFactor / totalAmount).toFixed(3)
+    : '0.000';
 
   return (
     <div className="interest-weight-calculation">

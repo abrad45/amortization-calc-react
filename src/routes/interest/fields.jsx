@@ -3,20 +3,14 @@ import { Field } from '/components/field/index';
 
 // Utilities
 import { useGetInterest } from '/hooks/selectors';
-import {
-  useSetBalance,
-  useSetInterest,
-  useSetPayment,
-  useSetModifier,
-} from '/hooks/actions';
+import { useSetBalance, useSetInterest, useSetPayment } from '/hooks/actions';
 
 export const InterestFields = () => {
-  const { balance, interestRate, payment, modifier } = useGetInterest();
+  const { balance, interestRate, payment } = useGetInterest();
 
   const setBalance = useSetBalance();
   const setInterest = useSetInterest();
   const setPayment = useSetPayment();
-  const setModifier = useSetModifier();
 
   return (
     <div className="data-collection">
@@ -41,7 +35,10 @@ export const InterestFields = () => {
         helpText="What can you comfortably pay now?"
         onChange={setPayment}
       />
-      {/*
+      {/* Parked: the Payoff Modifier field. To bring it back, pull `modifier`
+          off useGetInterest() and add `const setModifier = useSetModifier();`
+          above — both already exist in the reducer and the action hooks.
+
             <Field
                 label="Payoff Modifier"
                 value={modifier}

@@ -27,7 +27,7 @@ export const WeightedInterestRow = ({
         <Field
           label="...at..."
           value={interest}
-          prefix="$"
+          suffix="%"
           onChange={updateInterest}
           isHorizontal
         />

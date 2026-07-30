@@ -50,7 +50,7 @@ export const resetAllData = () => ({
 const setKey = (state, keyName, keyValue) =>
   Object.assign({}, state, { [keyName]: +keyValue });
 // ^^ this is a fine hack considering we only take numbers. could be an issue later
-const clearKey = (state, keyName) => Object.assign({}, state, { keyName: 0 });
+const clearKey = (state, keyName) => Object.assign({}, state, { [keyName]: 0 });
 
 export default (state = initialState, action = {}) => {
   switch (action.type) {

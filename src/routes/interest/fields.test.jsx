@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
@@ -58,7 +58,9 @@ describe('InterestFields', () => {
 
     expect(screen.getByText('Total remaining amount')).toBeInTheDocument();
     expect(screen.getByText('Weighted rate (see sidebar)')).toBeInTheDocument();
-    expect(screen.getByText('What can you comfortably pay now?')).toBeInTheDocument();
+    expect(
+      screen.getByText('What can you comfortably pay now?')
+    ).toBeInTheDocument();
   });
 
   it('should render with initial values from store', () => {

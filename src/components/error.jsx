@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 import { useResetAllData } from '/hooks/actions';
 
 // @TODO in the future, we can show different error messages depending
-// on `value` prop. For now, we only have one error.
+// on the `value` prop. For now we only have one error, so nothing reads it
+// yet — it's still declared in propTypes below as the intended API.
 
-export const DataError = ({ value }) => {
+export const DataError = () => {
   const resetPaymentData = useResetAllData();
 
   return (
@@ -27,6 +28,6 @@ export const DataError = ({ value }) => {
   );
 };
 
-Error.propTypes = {
+DataError.propTypes = {
   value: PropTypes.string.isRequired,
 };

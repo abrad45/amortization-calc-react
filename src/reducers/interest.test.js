@@ -148,8 +148,13 @@ describe('interest reducer', () => {
     it('should handle KEY_CLEAR', () => {
       const action = clearBalance();
       const state = reducer(initialState, action);
-      // Note: clearKey implementation sets keyName: 0, not balance: 0
-      expect(state).toEqual({ ...initialState, keyName: 0 });
+      expect(state).toEqual({ ...initialState, balance: 0 });
+    });
+
+    it('should zero the named key, not a literal "keyName" property', () => {
+      const state = reducer(initialState, clearPayment());
+      expect(state.payment).toBe(0);
+      expect(state).not.toHaveProperty('keyName');
     });
 
     it('should handle ALL_CLEAR', () => {

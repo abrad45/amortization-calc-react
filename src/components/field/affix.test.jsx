@@ -24,7 +24,7 @@ describe('Affix', () => {
   it('should render different text values', () => {
     const { rerender } = render(<Affix text="prefix" />);
     expect(screen.getByText('prefix')).toBeInTheDocument();
-    
+
     rerender(<Affix text="suffix" />);
     expect(screen.getByText('suffix')).toBeInTheDocument();
   });

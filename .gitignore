@@ -12,6 +12,9 @@ logs
 node_modules
 dist
 
+# Yarn build artifacts (install-state.gz etc.)
+.yarn
+
 # Test coverage
 coverage
 

@@ -7,7 +7,7 @@ import interestReducer from '/reducers/interest';
 
 // Mock the graph component
 vi.mock('./graph', () => ({
-  PaymentsGraph: ({ data }) => <div data-testid="graph">Graph</div>,
+  PaymentsGraph: () => <div data-testid="graph">Graph</div>,
 }));
 
 const createTestStore = () => {

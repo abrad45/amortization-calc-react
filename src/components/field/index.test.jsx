@@ -31,7 +31,7 @@ describe('Field', () => {
     const handleChange = vi.fn();
     render(<Field onChange={handleChange} value="" />);
     const input = screen.getByRole('spinbutton');
-    
+
     await user.type(input, '5');
     expect(handleChange).toHaveBeenCalled();
   });
@@ -98,7 +98,7 @@ describe('Field', () => {
     const handleChange = vi.fn();
     render(<Field onChange={handleChange} value="" />);
     const input = screen.getByRole('spinbutton');
-    
+
     await user.clear(input);
     await user.type(input, '42');
     // onChange is called for each character typed

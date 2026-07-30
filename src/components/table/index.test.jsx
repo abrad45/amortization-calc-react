@@ -7,7 +7,7 @@ describe('PaymentsTable', () => {
     {
       monthNumber: 1,
       paymentCount: 1,
-      remainingBalance: 9875.50,
+      remainingBalance: 9875.5,
       dateString: '01/2024',
       interestPaid: 51.37,
       interestPaidToDate: 51.37,
@@ -29,16 +29,45 @@ describe('PaymentsTable', () => {
 
   it('should render payment count message', () => {
     render(<PaymentsTable data={mockData} />);
-    expect(screen.getByText(/You'll be paid off in 2 months/i)).toBeInTheDocument();
+    expect(
+      screen.getByText(/You'll be paid off in 2 months/i)
+    ).toBeInTheDocument();
   });
 
-  it('should render years calculation', () => {
-    const longData = Array(24).fill(mockData[0]).map((item, index) => ({
-      ...item,
-      paymentCount: index + 1,
-    }));
-    render(<PaymentsTable data={longData} />);
-    expect(screen.getByText(/just over 2 years/i)).toBeInTheDocument();
+  const buildData = (months) =>
+    Array(months)
+      .fill(mockData[0])
+      .map((item, index) => ({
+        ...item,
+        paymentCount: index + 1,
+      }));
+
+  it('should render whole years without a month remainder', () => {
+    render(<PaymentsTable data={buildData(24)} />);
+    expect(
+      screen.getByText("You'll be paid off in 24 months (2 years)!")
+    ).toBeInTheDocument();
+  });
+
+  it('should render years plus remaining months', () => {
+    render(<PaymentsTable data={buildData(137)} />);
+    expect(
+      screen.getByText("You'll be paid off in 137 months (11 years, 5 months)!")
+    ).toBeInTheDocument();
+  });
+
+  it('should not mention years for a payoff under a year', () => {
+    render(<PaymentsTable data={buildData(11)} />);
+    expect(
+      screen.getByText("You'll be paid off in 11 months!")
+    ).toBeInTheDocument();
+  });
+
+  it('should use the singular for a one-month payoff', () => {
+    render(<PaymentsTable data={buildData(1)} />);
+    expect(
+      screen.getByText("You'll be paid off in 1 month!")
+    ).toBeInTheDocument();
   });
 
   it('should render table headers', () => {
@@ -73,8 +102,8 @@ describe('PaymentsTable', () => {
     expect(table).toHaveClass('is-fullwidth');
   });
 
-  it('should handle empty data array', () => {
+  it('should omit the payoff summary entirely for an empty data array', () => {
     render(<PaymentsTable data={[]} />);
-    expect(screen.getByText(/You'll be paid off in 0 months/i)).toBeInTheDocument();
+    expect(screen.queryByText(/You'll be paid off/i)).not.toBeInTheDocument();
   });
 });

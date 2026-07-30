@@ -1,3 +1,11 @@
 *.md
 *.markdown
 *.html
+
+# Generated output
+node_modules
+dist
+coverage
+.cache
+.yarn
+.claude

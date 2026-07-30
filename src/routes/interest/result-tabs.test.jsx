@@ -7,7 +7,7 @@ describe('ResultTabs', () => {
   it('should render table and graph tabs', () => {
     const setActiveTab = vi.fn();
     render(<ResultTabs activeTab="table" setActiveTab={setActiveTab} />);
-    
+
     expect(screen.getByText('Table')).toBeInTheDocument();
     expect(screen.getByText('Graph')).toBeInTheDocument();
   });
@@ -17,7 +17,7 @@ describe('ResultTabs', () => {
     const { container } = render(
       <ResultTabs activeTab="table" setActiveTab={setActiveTab} />
     );
-    
+
     const tabs = container.querySelectorAll('li');
     expect(tabs[0]).toHaveClass('is-active');
     expect(tabs[1]).not.toHaveClass('is-active');
@@ -28,20 +28,31 @@ describe('ResultTabs', () => {
     const { container } = render(
       <ResultTabs activeTab="graph" setActiveTab={setActiveTab} />
     );
-    
+
     const tabs = container.querySelectorAll('li');
     expect(tabs[0]).not.toHaveClass('is-active');
     expect(tabs[1]).toHaveClass('is-active');
+  });
+
+  it('should leave the inactive tab with no class at all', () => {
+    const setActiveTab = vi.fn();
+    const { container } = render(
+      <ResultTabs activeTab="table" setActiveTab={setActiveTab} />
+    );
+
+    // This used to stringify to the literal class "false"
+    const tabs = container.querySelectorAll('li');
+    expect(tabs[1].className).toBe('');
   });
 
   it('should call setActiveTab with "table" when table tab is clicked', async () => {
     const user = userEvent.setup();
     const setActiveTab = vi.fn();
     render(<ResultTabs activeTab="graph" setActiveTab={setActiveTab} />);
-    
+
     const tableLink = screen.getByText('Table');
     await user.click(tableLink);
-    
+
     expect(setActiveTab).toHaveBeenCalledWith('table');
   });
 
@@ -49,10 +60,10 @@ describe('ResultTabs', () => {
     const user = userEvent.setup();
     const setActiveTab = vi.fn();
     render(<ResultTabs activeTab="table" setActiveTab={setActiveTab} />);
-    
+
     const graphLink = screen.getByText('Graph');
     await user.click(graphLink);
-    
+
     expect(setActiveTab).toHaveBeenCalledWith('graph');
   });
 });
