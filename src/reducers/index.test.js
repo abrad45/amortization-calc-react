@@ -14,7 +14,6 @@ describe('reducers index', () => {
   });
 
   it('should allow dispatching actions', () => {
-    const initialState = store.getState();
     store.dispatch({
       type: 'amortization-calc/KEY_SET',
       keyName: 'balance',
@@ -22,7 +21,7 @@ describe('reducers index', () => {
     });
     const newState = store.getState();
     expect(newState.interest.balance).toBe(5000);
-    
+
     // Reset back to initial
     store.dispatch({ type: 'amortization-calc/ALL_CLEAR' });
   });

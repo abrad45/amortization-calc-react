@@ -21,8 +21,8 @@ This page is meant to show off my coding ability and, to an extent, philosophies
 
 ### Simple improvements
 
-* I think I'm fetching from hooks a bit too often
 * I should allow your modifier to be toggled from % to $.
+* The charting stack (chart.js 2 / react-chartjs-2 2) is several majors behind and predates React 18, as do react-router-dom 5 and react-redux 7. They all still work, but they're overdue.
 
 ## Notes about Calculations
 
@@ -36,12 +36,22 @@ Make sure you have these (or similar) before continuing:
 * `nodejs` (see `.nvmrc` for version)
 * `yarn` v1.22+
 
-_Note_: This project utilizes eslint. If you're using Visual Studio Code, the setting `eslint.packageManager` may need to be set to `yarn` in order for linting to work.
-
 1. `nvm use`
 2. `yarn install`
 3. `yarn start`
 4. Open `localhost:1234`
+
+## Linting and Formatting
+
+ESLint (flat config, in `eslint.config.mjs`) handles correctness; Prettier owns formatting, so there are no stylistic rules in the ESLint config.
+
+```bash
+yarn lint          # eslint .
+yarn format        # prettier --write .
+yarn format:check  # prettier --check . (this is what CI runs)
+```
+
+_Note_: If you're using Visual Studio Code, the setting `eslint.packageManager` may need to be set to `yarn` in order for linting to work.
 
 ## Testing
 
@@ -54,9 +64,9 @@ This project uses [Vitest](https://vitest.dev/) for unit testing with comprehens
 yarn test
 
 # Run tests once
-yarn test run
+yarn test:run
 
-# Run tests with coverage report
+# Run tests once with a coverage report
 yarn test:coverage
 ```
 

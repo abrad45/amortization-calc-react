@@ -23,7 +23,7 @@ describe('HelpText', () => {
   it('should render different help text', () => {
     const { rerender } = render(<HelpText>First message</HelpText>);
     expect(screen.getByText('First message')).toBeInTheDocument();
-    
+
     rerender(<HelpText>Second message</HelpText>);
     expect(screen.getByText('Second message')).toBeInTheDocument();
   });

@@ -8,25 +8,25 @@ import {
   setModifier,
 } from '/reducers/interest';
 
-export const useSetBalance = (value) => {
+export const useSetBalance = () => {
   const dispatch = useDispatch();
 
   return useCallback((value) => dispatch(setBalance(value)), [dispatch]);
 };
 
-export const useSetInterest = (value) => {
+export const useSetInterest = () => {
   const dispatch = useDispatch();
 
   return useCallback((value) => dispatch(setInterest(value)), [dispatch]);
 };
 
-export const useSetPayment = (value) => {
+export const useSetPayment = () => {
   const dispatch = useDispatch();
 
   return useCallback((value) => dispatch(setPayment(value)), [dispatch]);
 };
 
-export const useSetModifier = (value) => {
+export const useSetModifier = () => {
   const dispatch = useDispatch();
 
   return useCallback((value) => dispatch(setModifier(value)), [dispatch]);

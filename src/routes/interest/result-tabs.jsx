@@ -1,3 +1,5 @@
+import classnames from 'classnames';
+
 export const ResultTabs = ({ activeTab, setActiveTab }) => {
   const isTableActive = activeTab === 'table';
   const isGraphActive = activeTab === 'graph';
@@ -8,10 +10,10 @@ export const ResultTabs = ({ activeTab, setActiveTab }) => {
   return (
     <div className="tabs is-medium">
       <ul>
-        <li className={`${isTableActive && 'is-active'}`}>
+        <li className={classnames({ 'is-active': isTableActive })}>
           <a onClick={onTableClick}>Table</a>
         </li>
-        <li className={`${isGraphActive && 'is-active'}`}>
+        <li className={classnames({ 'is-active': isGraphActive })}>
           <a onClick={onGraphClick}>Graph</a>
         </li>
       </ul>

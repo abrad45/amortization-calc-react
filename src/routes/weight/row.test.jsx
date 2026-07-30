@@ -12,11 +12,7 @@ describe('WeightedInterestRow', () => {
 
   it('should render two fields', () => {
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     expect(screen.getByText('I owe:')).toBeInTheDocument();
@@ -26,11 +22,7 @@ describe('WeightedInterestRow', () => {
 
   it('should render amount field with value', () => {
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     const inputs = screen.getAllByRole('spinbutton');
@@ -39,38 +31,26 @@ describe('WeightedInterestRow', () => {
 
   it('should render interest field with value', () => {
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     const inputs = screen.getAllByRole('spinbutton');
     expect(inputs[1]).toHaveValue(5);
   });
 
-  it('should render with prefix $', () => {
+  it('should mark the amount field with $ and the rate field with %', () => {
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
-    const dollarSigns = screen.getAllByText('$');
-    expect(dollarSigns.length).toBe(2);
+    expect(screen.getAllByText('$')).toHaveLength(1);
+    expect(screen.getAllByText('%')).toHaveLength(1);
   });
 
   it('should call update with correct parameters for amount change', async () => {
     const user = userEvent.setup();
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     const inputs = screen.getAllByRole('spinbutton');
@@ -83,11 +63,7 @@ describe('WeightedInterestRow', () => {
   it('should call update with correct parameters for interest change', async () => {
     const user = userEvent.setup();
     render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     const inputs = screen.getAllByRole('spinbutton');
@@ -99,11 +75,7 @@ describe('WeightedInterestRow', () => {
 
   it('should render fields horizontally', () => {
     const { container } = render(
-      <WeightedInterestRow
-        index={0}
-        update={mockUpdate}
-        data={mockData}
-      />
+      <WeightedInterestRow index={0} update={mockUpdate} data={mockData} />
     );
 
     const horizontalFields = container.querySelectorAll('.field.is-horizontal');

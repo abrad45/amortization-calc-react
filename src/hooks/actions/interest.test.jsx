@@ -1,4 +1,4 @@
-import { describe, it, expect, vi } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import { renderHook, act } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
@@ -29,7 +29,7 @@ describe('interest action hooks', () => {
       });
 
       expect(typeof result.current).toBe('function');
-      
+
       act(() => {
         result.current(5000);
       });
@@ -46,7 +46,7 @@ describe('interest action hooks', () => {
       });
 
       expect(typeof result.current).toBe('function');
-      
+
       act(() => {
         result.current(4.5);
       });
@@ -63,7 +63,7 @@ describe('interest action hooks', () => {
       });
 
       expect(typeof result.current).toBe('function');
-      
+
       act(() => {
         result.current(200);
       });
@@ -80,7 +80,7 @@ describe('interest action hooks', () => {
       });
 
       expect(typeof result.current).toBe('function');
-      
+
       act(() => {
         result.current(10);
       });
@@ -92,14 +92,14 @@ describe('interest action hooks', () => {
   describe('useResetAllData', () => {
     it('should return a function that dispatches resetAllData action', () => {
       const store = createTestStore();
-      
+
       // First modify the state
       store.dispatch({
         type: 'amortization-calc/KEY_SET',
         keyName: 'balance',
         keyValue: 5000,
       });
-      
+
       expect(store.getState().interest.balance).toBe(5000);
 
       const { result } = renderHook(() => useResetAllData(), {
@@ -107,7 +107,7 @@ describe('interest action hooks', () => {
       });
 
       expect(typeof result.current).toBe('function');
-      
+
       act(() => {
         result.current();
       });

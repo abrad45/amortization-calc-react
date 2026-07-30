@@ -1,5 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
 import { Results } from './results';
@@ -7,13 +8,15 @@ import interestReducer from '/reducers/interest';
 
 // Mock the graph component
 vi.mock('./graph', () => ({
-  PaymentsGraph: ({ data }) => <div data-testid="graph">Graph with {data.length} items</div>,
+  PaymentsGraph: ({ data }) => (
+    <div data-testid="graph">Graph with {data.length} items</div>
+  ),
 }));
 
 const createTestStore = (initialState = {}) => {
   const rootReducer = combineReducers({ interest: interestReducer });
   const store = createStore(rootReducer);
-  
+
   // Update state if custom values provided
   if (Object.keys(initialState).length > 0) {
     Object.entries(initialState).forEach(([key, value]) => {
@@ -24,7 +27,7 @@ const createTestStore = (initialState = {}) => {
       });
     });
   }
-  
+
   return store;
 };
 
@@ -77,6 +80,30 @@ describe('Results', () => {
 
     // Look for table content
     expect(screen.getByText(/You'll be paid off in/i)).toBeInTheDocument();
+  });
+
+  it('should swap the table for the graph when the Graph tab is clicked', async () => {
+    const user = userEvent.setup();
+    const store = createTestStore({
+      balance: 500,
+      interestRate: 5,
+      payment: 100,
+    });
+
+    render(
+      <Provider store={store}>
+        <Results />
+      </Provider>
+    );
+
+    expect(screen.queryByTestId('graph')).not.toBeInTheDocument();
+
+    await user.click(screen.getByText('Graph'));
+
+    expect(screen.getByTestId('graph')).toBeInTheDocument();
+    expect(
+      screen.queryByText(/You'll be paid off in/i)
+    ).not.toBeInTheDocument();
   });
 
   it('should have result tabs', () => {
