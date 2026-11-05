@@ -1,8 +1,29 @@
 // Components
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip,
+} from 'chart.js';
 import { Line } from 'react-chartjs-2';
 
+ChartJS.register(
+  CategoryScale,
+  Filler,
+  Legend,
+  LinearScale,
+  LineElement,
+  PointElement,
+  Tooltip
+);
+
 const commonGraphProps = {
-  lineTension: 0.1,
+  tension: 0.1,
+  fill: true,
   borderCapStyle: 'butt',
   pointBackgroundColor: '#fff',
   pointBorderWidth: 1,

@@ -55,7 +55,8 @@ describe('PaymentsGraph', () => {
     const { getByTestId } = render(<PaymentsGraph data={mockData} />);
     const chartData = JSON.parse(getByTestId('line-chart').textContent);
 
-    expect(chartData.datasets[0].lineTension).toBe(0.1);
+    expect(chartData.datasets[0].tension).toBe(0.1);
+    expect(chartData.datasets[0].fill).toBe(true);
     expect(chartData.datasets[0].pointBackgroundColor).toBe('#fff');
     expect(chartData.datasets[0].pointRadius).toBe(1);
   });

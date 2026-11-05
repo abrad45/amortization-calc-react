@@ -2,7 +2,7 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 // Utilities
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from '/reducers';
 
@@ -20,14 +20,10 @@ const App = () => (
       <div className="container">
         <div className="columns">
           <div className="column is-three-quarters">
-            <Switch>
-              <Route path="/" exact>
-                <InterestCalc />
-              </Route>
-              <Route path="/weighted-interest">
-                <WeightedInterest />
-              </Route>
-            </Switch>
+            <Routes>
+              <Route path="/" element={<InterestCalc />} />
+              <Route path="/weighted-interest" element={<WeightedInterest />} />
+            </Routes>
           </div>
           <Sidebar />
         </div>
